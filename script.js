@@ -3,11 +3,10 @@ let interval;
 let isRunning = false;
 
 function updateDisplay() {
-  const currentTime = new Date().getTime();
-  const elapsedTime = new Date(currentTime - startTime);
-  const hours = elapsedTime.getUTCHours().toString().padStart(2, '0');
-  const minutes = elapsedTime.getUTCMinutes().toString().padStart(2, '0');
-  const seconds = elapsedTime.getUTCSeconds().toString().padStart(2, '0');
+  const currentTime = new Date().getTime() - startTime;
+  const hours = String(Math.floor(currentTime / 3600000)).padStart(2, '0');
+  const minutes = String(Math.floor((currentTime % 3600000) / 60000)).padStart(2, '0');
+  const seconds = String(Math.floor((currentTime % 60000) / 1000)).padStart(2, '0');
   document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
 }
 
